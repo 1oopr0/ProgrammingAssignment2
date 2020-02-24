@@ -8,6 +8,8 @@
 #set the value of the inverse of a matrix
 #get the value of the inverse of a matrix
 
+#If you set the matrix in makeCacheMatrix, the cached inverse is initialized to NULL.
+
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
   set <- function(y) {
@@ -23,7 +25,8 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## cacheSolve computing the inverse of a square matrix created with the above function
+## cacheSolve get the inverse from the cache of the above function. 
+## If it is NULL, the inverse is computed and the value is set in the cache.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -33,7 +36,7 @@ cacheSolve <- function(x, ...) {
     return(m)
   }
   data <- x$get()
-  m <- solve(data, ...)
+  m <- solve(data)
   x$setInverse(m)
   m
 }
